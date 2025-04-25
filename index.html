@@ -272,7 +272,68 @@
       right: 10%;
       animation-delay: 1s;
     }
-    
+    nav {
+      margin-top: 2rem;
+        background-color: #009688;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    }
+    .navList {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .navList li {
+      margin: 0 1rem;
+    }
+    .navList a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: bold;
+      transition: var(--transition);
+    }
+    .navList a:hover {
+      color: #e7e7e7 ;
+    }
+
+    section {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+
+  section h2 {
+    font-size: 1.5em;
+    color: #2c3e50;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+
+  section p {
+    font-size: 1em;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  a {
+    color: #3498db;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
     @keyframes swing {
       0% { transform: rotate(-5deg); }
       100% { transform: rotate(5deg); }
@@ -371,7 +432,14 @@
         <button class="language-btn active" data-lang="en">EN</button>
         <button class="language-btn" data-lang="ar">عربي</button>
       </div>
-      
+      <nav>
+        <ul class="navList">
+            <li><a href="#About">About</a></li>
+            <li><a href="#Contact">Contact</a></li>
+            <li><a href="#PrivacyPolicy">Privacy Policy</a></li>
+
+        </ul>
+      </nav>
       <h1 class="title-en">Countdown to Eid Al-Adha 2025</h1>
       <h1 class="title-ar" style="display: none;">العد التنازلي لعيد الأضحى ٢٠٢٥</h1>
       
@@ -429,7 +497,20 @@
         <p>عادة ما يستمر الاحتفال لمدة ثلاثة أيام ويعد وقتًا للفرح والتأمل والامتنان. يقوم العديد من المسلمين بذبح حيوان (عادة خروف أو ماعز أو بقرة أو جمل) وتوزيع اللحم بين العائلة والأصدقاء والمحتاجين.</p>
       </div>
     </div>
-    
+    <section id="About">
+        <h2>About</h2>
+        <p>This website shows a countdown to Eid al-Adha 2025, helping users keep track of the blessed day. Built by [Your Name].</p>
+      </section>
+      
+      <section id="Contact">
+        <h2>Contact</h2>
+        <p>You can reach me at: <a href="mailto:your@email.com">noty36666@gmail.com</a></p>
+      </section>
+      
+      <section id="PrivacyPolicy">
+        <h2>Privacy Policy</h2>
+        <p>We do not collect or store any personal data. This website is for informational purposes only.</p>
+      </section>
     <div class="decoration decoration-1"></div>
     <div class="decoration decoration-2"></div>
     
