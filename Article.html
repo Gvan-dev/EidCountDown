@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid Al-Adha</title>
+    <style>
+      :root {
+        --primary: #009688;
+        --accent: #e91e63;
+        --text: #333;
+        --bg: #f8f5f0;
+        --light: #ffffff;
+        --dark: #1a1a1a;
+        --gold: #d4af37;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        transition: var(--transition);
+        min-height: 100vh;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23009688' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        overflow-x: hidden;
+      }
+
+      html[lang="ar"] {
+        direction: rtl;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .header {
+        position: relative;
+        padding: 2rem 0;
+        margin-bottom: 1rem; /* Reduced margin */
+        text-align: center;
+      }
+
+      .language-toggle {
+        position: absolute;
+        top: 0.1rem;
+        right: 2rem;
+        display: flex;
+        background: var(--light);
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+      }
+
+      html[lang="ar"] .language-toggle {
+        right: auto;
+        left: 2rem; /* Adjusted for RTL */
+      }
+
+      .language-btn {
+        padding: 0.5rem 1rem;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-weight: bold;
+        transition: var(--transition);
+        font-size: 0.9rem;
+      }
+
+      .language-btn.active {
+        background: var(--primary);
+        color: white;
+      }
+
+      h1 {
+        font-size: 2.8rem; /* Slightly reduced */
+        margin-bottom: 1rem; /* Reduced margin */
+        color: var(--primary);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+        display: inline-block;
+      }
+
+      h1::before, h1::after {
+        content: "🕋";
+        font-size: 2rem; /* Slightly reduced */
+        margin: 0 0.8rem; /* Adjusted margin */
+        animation: float 3s infinite alternate ease-in-out;
+      }
+
+      @keyframes float {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-8px); } /* Reduced float */
+      }
+
+      /* Countdown styles (static display) */
+      .countdown-container {
+        display: flex;
+        justify-content: center;
+        margin: 1.5rem 0; /* Reduced margin */
+        perspective: 1000px;
+      }
+
+      .countdown-box {
+        display: flex;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+      }
+
+      .time-section {
+        margin: 0 8px; /* Reduced margin */
+        text-align: center;
+        position: relative;
+        width: 80px; /* Reduced width */
+        height: 100px; /* Reduced height */
+        perspective: 500px;
+        animation: appear 1s forwards;
+        opacity: 0;
+        transform: translateY(15px); /* Reduced transform */
+      }
+
+      .time-section:nth-child(1) { animation-delay: 0.2s; }
+      .time-section:nth-child(2) { animation-delay: 0.4s; }
+      .time-section:nth-child(3) { animation-delay: 0.6s; }
+      .time-section:nth-child(4) { animation-delay: 0.8s; }
+
+      @keyframes appear {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .time-amount {
+        color: var(--primary);
+        background: var(--light);
+        font-size: 2rem; /* Reduced font size */
+        font-weight: bold;
+        width: 100%;
+        height: 65px; /* Reduced height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px; /* Reduced border radius */
+        box-shadow: 0 8px 20px rgba(0, 150, 136, 0.1); /* Adjusted shadow */
+        position: relative;
+        overflow: hidden;
+        transition: var(--transition);
+      }
+
+      .time-amount::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .time-amount::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background: rgba(0, 0, 0, 0.1);
+        top: 50%;
+      }
+
+      .time-period {
+        font-size: 0.9rem; /* Reduced font size */
+        color: var(--text);
+        margin-top: 8px; /* Reduced margin */
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      /* End of Countdown styles */
+
+      /* Article Section Styles */
+      .article-section {
+        background: var(--light);
+        padding: 1.5rem; /* Reduced padding */
+        border-radius: 12px; /* Slightly reduced */
+        margin-top: 1.5rem; /* Reduced margin */
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05); /* Adjusted shadow */
+        max-width: 750px; /* Adjusted max-width */
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .article-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px; /* Reduced height */
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+      }
+
+      html[lang="ar"] .article-section::before {
+        background: linear-gradient(90deg, var(--accent), var(--primary));
+      }
+
+      .article-section h2 {
+        color: var(--primary);
+        margin-bottom: 0.8rem; /* Reduced margin */
+        position: relative;
+        display: inline-block;
+        font-size: 1.8rem; /* Reduced font size */
+      }
+
+      .article-section h2::after {
+        content: "";
+        position: absolute;
+        bottom: -4px; /* Adjusted position */
+        left: 0;
+        width: 40px; /* Reduced width */
+        height: 2px; /* Reduced height */
+        background: var(--accent);
+      }
+
+      html[lang="ar"] .article-section h2::after {
+        right: 0;
+        left: auto;
+      }
+
+      .article-section p {
+        line-height: 1.6;
+        margin-bottom: 0.8rem; /* Reduced margin */
+        font-size: 0.95rem; /* Adjusted font size */
+      }
+      /* End of Article Section Styles */
+
+      .decoration {
+        position: absolute;
+        width: 250px; /* Reduced size */
+        height: 250px; /* Reduced size */
+        background: var(--primary);
+        opacity: 0.05;
+        border-radius: 50%;
+        z-index: -1;
+      }
+
+      .decoration-1 {
+        top: -125px; /* Adjusted position */
+        right: -125px; /* Adjusted position */
+      }
+
+      .decoration-2 {
+        bottom: -125px; /* Adjusted position */
+        left: -125px; /* Adjusted position */
+      }
+
+      .lantern {
+        position: absolute;
+        font-size: 1.8rem; /* Reduced size */
+        color: var(--gold);
+        animation: swing 3s infinite alternate ease-in-out;
+        text-shadow: 0 0 8px rgba(212, 175, 55, 0.7); /* Adjusted shadow */
+      }
+
+      .lantern-1 {
+        top: 40px; /* Adjusted position */
+        left: 8%; /* Adjusted position */
+        animation-delay: 0.5s;
+      }
+
+      .lantern-2 {
+        top: 60px; /* Adjusted position */
+        right: 8%; /* Adjusted position */
+        animation-delay: 1s;
+      }
+
+      nav {
+        margin-top: 1.5rem; /* Reduced margin */
+        background-color: #009688;
+        padding: 0.4rem; /* Reduced padding */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px; /* Reduced border radius */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        max-width: 500px; /* Added max-width */
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .navList {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin-top: 0rem; /* Removed top margin */
+        padding-left: 0; /* Remove default padding */
+      }
+
+      .navList li {
+        margin: 0 0.8rem; /* Reduced margin */
+      }
+
+      .navList a {
+        text-decoration: none;
+        color: var(--light); /* Changed to light for better contrast on primary bg */
+        font-weight: bold;
+        transition: var(--transition);
+        font-size: 0.9rem; /* Adjusted font size */
+      }
+
+      .navList a:hover {
+        color: var(--gold); /* Changed hover color */
+      }
+
+      /* Style for the provided generic section, if used instead of .article-section */
+      section {
+        max-width: 700px;
+        margin: 30px auto; /* Reduced margin */
+        padding: 15px; /* Reduced padding */
+        border-radius: 10px; /* Reduced border radius */
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+      }
+
+      section h2 {
+        font-size: 1.4em; /* Reduced font size */
+        color: #2c3e50;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 4px; /* Reduced padding */
+        margin-bottom: 8px; /* Reduced margin */
+      }
+
+      section p {
+        font-size: 0.95em; /* Reduced font size */
+        color: #333;
+        line-height: 1.6;
+      }
+
+      a {
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+      /* End of generic section style */
+
+      @keyframes swing {
+        0% { transform: rotate(-4deg); } /* Reduced swing */
+        100% { transform: rotate(4deg); } /* Reduced swing */
+      }
+
+      .eid-mubarak {
+        font-size: 2.5rem; /* Reduced font size */
+        color: var(--gold);
+        text-shadow: 0 0 12px rgba(212, 175, 55, 0.8); /* Adjusted shadow */
+        margin: 1.5rem 0; /* Reduced margin */
+        animation: pulse 2s infinite;
+        /* display: none; */ /* Initially shown or controlled by JS */
+      }
+
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); } /* Reduced scale */
+        100% { transform: scale(1); }
+      }
+
+      .show {
+        display: block;
+      }
+
+      .crescent-moon {
+        width: 80px; /* Reduced size */
+        height: 80px; /* Reduced size */
+        position: absolute;
+        top: 15px; /* Adjusted position */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -1;
+        opacity: 0.1;
+      }
+      /* Basic SVG for crescent moon */
+      .crescent-moon svg {
+          width: 100%;
+          height: 100%;
+          fill: var(--primary);
+      }
+
+      .footer {
+        text-align: center;
+        padding: 1.5rem 0; /* Reduced padding */
+        margin-top: 2rem; /* Reduced margin */
+        color: var(--text);
+        font-size: 0.85rem; /* Reduced font size */
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .countdown-box {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .time-section {
+          width: 70px; /* Adjusted for smaller screens */
+          height: 90px; /* Adjusted for smaller screens */
+          margin: 4px; /* Adjusted for smaller screens */
+        }
+
+        .time-amount {
+          font-size: 1.8rem; /* Adjusted for smaller screens */
+          height: 55px; /* Adjusted for smaller screens */
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        h1::before, h1::after {
+          font-size: 1.6rem; /* Adjusted for smaller screens */
+          margin: 0 0.4rem; /* Adjusted for smaller screens */
+        }
+        .language-toggle {
+            right: 1rem;
+        }
+        html[lang="ar"] .language-toggle {
+            left: 1rem;
+        }
+        nav {
+            margin-top: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 0.8rem; /* Reduced padding */
+        }
+
+        .time-section {
+          width: 60px; /* Further reduced */
+          height: 80px; /* Further reduced */
+          margin: 2px; /* Further reduced */
+        }
+
+        .time-amount {
+          font-size: 1.3rem; /* Further reduced */
+          height: 45px; /* Further reduced */
+        }
+
+        .time-period {
+          font-size: 0.7rem; /* Further reduced */
+        }
+        h1 {
+            font-size: 1.8rem;
+        }
+        h1::before, h1::after {
+            font-size: 1.5rem;
+            margin: 0 0.3rem;
+        }
+        .article-section h2 {
+            font-size: 1.5rem;
+        }
+        .article-section p {
+            font-size: 0.9rem;
+        }
+        .language-toggle {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.8rem;
+        }
+      }
+    </style>
+</head>
+<body>
+    <div class="decoration decoration-1"></div>
+    <div class="decoration decoration-2"></div>
+    <span class="lantern lantern-1">🏮</span>
+    <span class="lantern lantern-2">🏮</span>
+
+    <div class="container">
+        <header class="header">
+            <div class="crescent-moon">
+                <svg viewBox="0 0 100 100"><path d="M50 0 A50 50 0 1 0 50 100 A40 40 0 1 1 50 0 Z"/></svg>
+            </div>
+            <div class="language-toggle">
+                <button id="lang-en" class="language-btn active" onclick="setLanguage('en')">EN</button>
+                <button id="lang-ar" class="language-btn" onclick="setLanguage('ar')">AR</button>
+            </div>
+            <h1 data-en="Eid Al-Adha" data-ar="عيد الأضحى">Eid Al-Adha</h1>
+        </header>
+
+
+
+
+
+        <nav>
+            <ul class="navList">
+                <li><a href="#" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                <li><a href="#article" data-en="About Eid" data-ar="عن العيد">About Eid</a></li>
+                <li><a href="#" data-en="Traditions" data-ar="التقاليد">Traditions</a></li>
+
+            </ul>
+        </nav>
+
+        <main id="article">
+            <div id="content-en" class="article-section">
+                <h2>About Eid Al-Adha</h2>
+                <p>Eid al-Adha, also known as the "Festival of Sacrifice," is one of the two most important Islamic holidays celebrated worldwide. It honors the willingness of Ibrahim (Abraham) to sacrifice his son Isma'il (Ishmael) as an act of obedience to God's command. Before Ibrahim could sacrifice his son, however, God provided a lamb to sacrifice instead.</p>
+                <p>This festival commemorates Ibrahim's devotion and is celebrated with prayers, feasts, and the ritual sacrifice of an animal (usually a sheep, goat, cow, or camel). The meat from the sacrificed animal is typically divided into three parts: one part for the family, one for relatives and friends, and one for the poor and needy. This act of sharing emphasizes charity and community.</p>
+                <p>Eid al-Adha usually falls on the 10th day of Dhu al-Hijjah, the twelfth and final month in the Islamic lunar calendar, and its celebration lasts for three to four days. It also marks the end of the Hajj pilgrimage to Mecca.</p>
+                <p>Muslims around the world celebrate with special prayers, visiting family and friends, giving gifts, and wearing new clothes. It is a time of joy, reflection, and gratitude.</p>
+            </div>
+
+            <div id="content-ar" class="article-section hidden">
+                <h2>عن عيد الأضحى</h2>
+                <p>عيد الأضحى، المعروف أيضًا باسم "عيد التضحية"، هو أحد أهم عيدين إسلاميين يحتفل بهما في جميع أنحاء العالم. يكرم هذا العيد استعداد النبي إبراهيم (عليه السلام) للتضحية بابنه إسماعيل (عليه السلام) كفعل طاعة لأمر الله. ولكن قبل أن يتمكن إبراهيم من التضحية بابنه، قدم الله كبشًا ليضحي به بدلاً من ذلك.</p>
+                <p>يحيي هذا العيد ذكرى تفاني إبراهيم ويحتفل به بالصلاة والمآدب وذبح الأضاحي (عادة ما تكون خروفًا أو ماعزًا أو بقرة أو جملاً). عادة ما يتم تقسيم لحم الأضحية إلى ثلاثة أجزاء: جزء للعائلة، وجزء للأقارب والأصدقاء، وجزء للفقراء والمحتاجين. يؤكد هذا الفعل على أهمية الصدقة والمجتمع.</p>
+                <p>يصادف عيد الأضحى عادة في اليوم العاشر من ذي الحجة، وهو الشهر الثاني عشر والأخير في التقويم القمري الإسلامي، وتستمر احتفالاته لمدة ثلاثة إلى أربعة أيام. كما أنه يمثل نهاية مناسك الحج إلى مكة المكرمة.</p>
+                <p>يحتفل المسلمون في جميع أنحاء العالم بصلاة العيد الخاصة، وزيارة العائلة والأصدقاء، وتقديم الهدايا، وارتداء ملابس جديدة. إنه وقت للفرح والتأمل والامتنان.</p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p id="footer-text" data-en="&copy; 2025 Eid Al-Adha Celebration. All rights reserved." data-ar="&copy; 2025 احتفالات عيد الأضحى. جميع الحقوق محفوظة.">&copy; 2025 Eid Al-Adha Celebration. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const htmlEl = document.documentElement;
+        const langEnBtn = document.getElementById('lang-en');
+        const langArBtn = document.getElementById('lang-ar');
+        const contentEn = document.getElementById('content-en');
+        const contentAr = document.getElementById('content-ar');
+
+        // Store all translatable elements
+        const translatableElements = document.querySelectorAll('[data-en]');
+
+        function setLanguage(lang) {
+            htmlEl.lang = lang;
+            if (lang === 'ar') {
+                langArBtn.classList.add('active');
+                langEnBtn.classList.remove('active');
+                contentAr.classList.remove('hidden');
+                contentEn.classList.add('hidden');
+            } else {
+                langEnBtn.classList.add('active');
+                langArBtn.classList.remove('active');
+                contentEn.classList.remove('hidden');
+                contentAr.classList.add('hidden');
+            }
+
+            // Update text content for all translatable elements
+            translatableElements.forEach(el => {
+                el.textContent = el.dataset[lang];
+            });
+        }
+
+        // Initialize with English or based on browser preference (optional)
+        setLanguage('en'); 
+
+    </script>
+</body>
+</html>
